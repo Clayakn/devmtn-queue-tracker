@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
 import DevMountainLogo from './assets/DevMountain_logo.png';
+import SocketTesting from './components/SocketTesting'
 
 // Components 
 import StudentContainer from './components/StudentContainer';
@@ -14,7 +15,8 @@ export default class App extends React.Component {
       minimumZoomScale={1}
       contentContainerStyle={styles.container}
       >
-        <View >
+        <View>
+        <SocketTesting />
             <Text>DevMountain Tracker</Text>
               <Image source={DevMountainLogo} style={styles.logo}/>
             <StudentContainer />
