@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import DevMountainLogo from './assets/DevMountain_logo.png';
+import SocketTesting from './components/SocketTesting'
 
 // Components 
 import Student from './components/Student';
@@ -10,6 +11,7 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+      <SocketTesting />
         <Text>DevMountain Tracker</Text>
           <Image source={DevMountainLogo} style={styles.logo}/>
         <Text>Student List</Text>
