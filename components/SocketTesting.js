@@ -1,6 +1,8 @@
 import React from 'react'
-import SocketIOClient from 'socket.io-client'
-import { View, Text} from 'react-native'
+import openSocket from 'socket.io-client'
+import { View, Text, Button } from 'react-native'
+const socket = openSocket('http://192.168.1.62:4000')
+
 
 class SocketTesting extends React.Component {
     constructor() {
@@ -8,14 +10,17 @@ class SocketTesting extends React.Component {
         this.state = {
             messages: ['Hi there', 'This is a chat', 'Oh no']
         }
-        this.socket = SocketIOClient('http://localhost:3000')
     }
 
     componentDidMount() {
-        this.socket.on('message', (message) => {
+        console.log('------------ SocketTesting has mounted', socket)
+        socket.on('message', (message) => {
             this.setState({ messages: message})
         })
-        this.socket.emit('New user joined', null)
+    }
+
+    sayHiToServer = () => {
+        socket.emit('greeting', 'Hello there server')
     }
 
     render() {
@@ -23,6 +28,7 @@ class SocketTesting extends React.Component {
         return(
             <View>
                 {chats}
+                <Button onPress={this.sayHiToServer} title='Say hi to server' />
             </View>
         )
     }
