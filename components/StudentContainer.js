@@ -1,12 +1,12 @@
-import React from 'react';
-import { View } from 'react-native';
+import React, { Component } from 'react';
+import { View, Alert } from 'react-native';
 import StudentPresentation from './StudentPresentation';
 
-export default class StudentContainer extends React.Component {
+export default class StudentContainer extends Component {
   constructor() {
     super();
     this.state = {
-        students: ['Mike', 'Josh', 'Brian', 'Tyler'],
+        students: [{name: 'Mike'}, {name: 'Josh'}, {name: 'Brian'}, {name: 'Tyler'}],
         studentName: ""
     };
   }
@@ -17,10 +17,15 @@ export default class StudentContainer extends React.Component {
   }
 
   addStudent = () => {
+      if (!this.state.studentName.length) {
+          Alert.alert('Must type in name first')
+          return;
+      }
       this.setState({
-          students: [...this.state.students, this.state.studentName],
+          students: [...this.state.students, {name: this.state.studentName}],
           studentName: ''
       })
+      Alert.alert('Student has been added!')
   }
   render() {
     const { students, studentName } = this.state

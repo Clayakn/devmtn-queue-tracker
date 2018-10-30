@@ -1,13 +1,8 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableHighlight, FlatList } from 'react-native';
 
 export default function StudentPresentation(props) {
     const { studentName, students, changeHandleName, addStudent } = props
-    const displayStudents = students.map((student, index) => {
-      return (
-        <Text key={index} style={styles.name}>{student}</Text>
-      );
-    });
     return (
         <View>
            <Text>New Name: {studentName}</Text>
@@ -18,14 +13,20 @@ export default function StudentPresentation(props) {
                   onChangeText={changeHandleName}
                   style={{width: 150}}
               />
-              <Button
-                title='Submit'
+              <TouchableHighlight
+                style={styles.submitButton}
                 onPress={addStudent} 
-              />
+                underlayColor={'yellow'}
+              >
+              <Text>Submit</Text>
+              </TouchableHighlight>
            </View>
-          <View style={styles.studentContainer}>
-            <Text>Student List</Text>
-            {displayStudents}
+          <Text>Student List</Text>
+          <View>
+            <FlatList 
+            data={students}
+            renderItem={({item}) => <Text style={styles.name}>{item.name}</Text>}
+            />
           </View>
         </View>
     );
@@ -35,11 +36,13 @@ const styles = StyleSheet.create({
   inputContainer: {
     flexDirection: "row"
   },
-  studentContainer: {
-    flexDirection: "row",
-  },
   name: {
     color: "blue",
-    marginLeft: 15
+  },
+  submitButton: {
+    backgroundColor: "#DDDDDD",
+    width: 75,
+    height: 20,
+    alignItems: "center"
   },
 });
