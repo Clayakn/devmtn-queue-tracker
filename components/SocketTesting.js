@@ -24,7 +24,7 @@ class SocketTesting extends React.Component {
     }
 
     render() {
-        const chats = this.state.messages.map(message => <Text>{message}</Text>)
+        const chats = this.state.messages.map((message, index) => <Text key={index}>{message}</Text>)
         return(
             <View>
                 {chats}

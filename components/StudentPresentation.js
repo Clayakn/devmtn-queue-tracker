@@ -26,6 +26,7 @@ export default function StudentPresentation(props) {
             <FlatList 
             data={students}
             renderItem={({item}) => <Text style={styles.name}>{item.name}</Text>}
+            keyExtractor={(item, index) => `${index}`}
             />
           </View>
         </View>
