@@ -29,3 +29,17 @@ websocket.on('message', (message) => {
     messages.push(message)
     socket.broadcast.emit('message', message)
 })
+
+function _sendAndSaveMessage(message, socket, fromServer) {
+    var emitter = fromServer ? websocket : socket.broadcast;
+    emitter.emit('message', [message]);
+  }
+
+var stdin = process.openStdin();
+stdin.addListener('data', function(d) {
+    _sendAndSaveMessage({
+    text: d.toString().trim(),
+    createdAt: new Date(),
+    user: { _id: 'robot' }
+  }, null /* no socket */, true /* send from server */);
+});

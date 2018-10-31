@@ -15,7 +15,10 @@ class SocketTesting extends React.Component {
     componentDidMount() {
         console.log('------------ SocketTesting has mounted', socket)
         socket.on('message', (message) => {
-            this.setState({ messages: message})
+            console.log('------------ message', message)
+            let newArr = []
+            newArr.push(message.text)
+            this.setState({ messages: newArr })
         })
     }
 
