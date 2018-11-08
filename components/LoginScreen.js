@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Button} from 'react-native';
+import { View, Text, Button, ActivityIndicator} from 'react-native';
 
 export default class LoginScreen extends Component {
     constructor() {
@@ -14,6 +14,7 @@ export default class LoginScreen extends Component {
                 onPress={() => this.props.navigation.navigate('Home')}
                 />
                 <Text>Login Screen</Text>
+                {/* <ActivityIndicator size="large" color="#0000ff" /> */}
             </View>
         );
       }

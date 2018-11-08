@@ -1,7 +1,7 @@
 import React from 'react'
 import openSocket from 'socket.io-client'
 import { View, Text, Button } from 'react-native'
-const PushNotification = require('react-native-push-notification')
+// const PushNotification = require('react-native-push-notification')
 const socket = openSocket('http://192.168.1.62:4000')
 
 // Need to eject before adding notifications?
